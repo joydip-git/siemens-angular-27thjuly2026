@@ -1,0 +1,18 @@
+JavaScript
+TypeScript
+
+Node JS
+
+2009, Ryan Dahl
+
+interpreter (V8) + runtime (Node JS)
+
+
+chrome -> V8 (C++)
+Safari -> Js Core (indigo)
+firefox -> Spidermonkey
+
+
+
+
+
