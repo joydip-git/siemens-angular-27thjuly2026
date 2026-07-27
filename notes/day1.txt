@@ -46,9 +46,25 @@ Pipe		class		@Pipe
 feature: Binding
 a. data binding:
 	to pass data from code to template
-	1. {{<prop-name>}}
-	2. 
-b. event binding
+	1. interpolation: {{<prop-name>}}
+	2. property binding:
+	<element [target-attribute]="prop-name">
+b. event binding:
+	<element (event)="method-of-code(args)">
+
+Zone.js => signal() -> WritableSignal<T>
+			.set()
+			.update()
+
+
+@Ditective({
+selector:'[ngFor]'
+export class NgForOfDirective{
+	func(templatecode){}
+}
+	func(templatecode){}
+
+
 
 
 

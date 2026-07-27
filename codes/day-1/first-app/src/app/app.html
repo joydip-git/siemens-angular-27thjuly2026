@@ -1,3 +1,44 @@
-<h1>{{title}}</h1>
+<!-- <h1>{{title()}}</h1>
 <br>
+<div>
+    <label for="txtTitle">Title: &nbsp;</label>
+    <input type="text" id="txtTitle" [value]="title()" (input)="updateTitle($event.target.value)"
+        [style.width.px]="width">
+</div>
+<br>
+<div>
+    <span> Count: {{count()}}</span>
+    <br>
+    <button (click)="updateCount()">Increase</button>
+    <br>
+    <span>Multiplied Count: {{multiplied()}}</span>
+</div>
 <app-second></app-second>
+<app-calculator>
+    
+</app-calculator> -->
+
+<ul>
+    <li *ngFor="let item of names">
+        {{item}}
+    </li>
+</ul>
+
+
+<br>
+@if(names.length>0){
+<div>
+    <label for="ddlNames">Names: &nbsp;</label>
+    <select id="ddlNames">
+        <option value="-1" disabled selected>--select--</option>
+        @for (item of names; track $index) {
+        <option value="{{$index+1}}">
+            {{item}}
+        </option>
+        }
+    </select>
+</div>
+}
+@else {
+<span>No Names</span>
+}
