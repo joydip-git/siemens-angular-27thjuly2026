@@ -12,6 +12,49 @@ chrome -> V8 (C++)
 Safari -> Js Core (indigo)
 firefox -> Spidermonkey
 
+Angular:
+front-end JS based framework
+SPA
+application is built at the top of series of components
+the components are clubbed and pushed into the HTML file <body> element
+component => template/view + code + metadata
+
+tool: angular cli
+package: @angular/cli
+>npm i @angular/cli --global
+
+
+angular packages:
+@angular/core
+@angular/common
+@angular/router
+@angular/forms
+@angular/platform-browser
+
+rxjs
+tslib
+
+type		type		decorator
+-------------------------------------------
+component	class		@Component
+Service		class		@Injectable
+Directive	class		@Directive
+Pipe		class		@Pipe
+.........................
+
+
+feature: Binding
+a. data binding:
+	to pass data from code to template
+	1. {{<prop-name>}}
+	2. 
+b. event binding
+
+
+
+	
+	
+
 
 
 
