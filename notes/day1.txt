@@ -65,6 +65,27 @@ export class NgForOfDirective{
 	func(templatecode){}
 
 
+pms-app
+	- app (folder)
+		app.ts
+		app.html
+		app.css
+		app.spec.ts
+		app-routes.ts
+		app-config.ts
+
+		products (folder)
+			components (folder)
+				product-list (folder)
+					product-list.ts (ProductList) => displays image, name, price and rating of every product from the array through HTML <table> element
+					product-list.html
+					product-list.css
+					product-list.spec.ts
+
+			services
+
+			pipes	
+
 
 
 
