@@ -75,6 +75,10 @@ pms-app
 		app-config.ts
 
 		products (folder)
+			models (folder)
+				product.ts (contains Product interface/type)
+			data (folder)
+				products.ts (contains an array of Product objects)
 			components (folder)
 				product-list (folder)
 					product-list.ts (ProductList) => displays image, name, price and rating of every product from the array through HTML <table> element
