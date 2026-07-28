@@ -1,2 +1,22 @@
-Service
-HTTP requests
+Service:
+	Providers:
+		Base type: Provider
+			child types: ClassProvider (useClass), ExistingProvider (useExisting), FactoryProvider (useFactory), ValueProvider (useValue)
+
+
+HTTP requests:
+	HttpClient => built-in service class
+		
+	- get()
+	- post()
+	- put()
+	- delete()
+	.......
+
+	Observable -> rxjs
+
+reactivex.io
+rxjs.dev
+Reactive Extensions for JavaScript -> 
+
+
