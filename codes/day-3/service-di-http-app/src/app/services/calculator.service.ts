@@ -1,8 +1,6 @@
-import { inject, Injectable } from "@angular/core";
-
-export interface ServiceContract {
-    calculate(choice: number, a: number, b: number): number;
-}
+import { inject } from "@angular/core";
+import { ServiceContract } from "./service-contract";
+import { OtherService } from "./other.service";
 
 //@Injectable()
 export class CalculatorService implements ServiceContract {
@@ -33,15 +31,3 @@ export class CalculatorService implements ServiceContract {
 
 }
 
-@Injectable({
-    providedIn: 'root'
-})
-// @Service()
-export class OtherService {
-    add(a: number, b: number): number {
-        return a + b
-    }
-    subtract(a: number, b: number): number {
-        return a - b
-    }
-}

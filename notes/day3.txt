@@ -155,3 +155,26 @@ export class TodoList{
 		this.svc = svcRef
 	}
 }
+
+Unit testing:
+--------------------
+Karma -> test runner
+Jasmine -> testing framework 
+
+installation of packages:
+npm install -D karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter jasmine-core @types/jasmine
+
+TestBed: @angular/core/testing
+Configures and initializes environment for unit testing and provides methods for creating components and services in unit tests.
+
+
+var h2 = document.createElement('h2')
+var app = new App();
+h2.innerText = app.title()
+
+ComponentFixture -> whenStable() method
+Get a promise that resolves when the fixture is stable.
+This can be used to resume testing after events have triggered asynchronous activity or asynchronous change detection.
+
+
+
