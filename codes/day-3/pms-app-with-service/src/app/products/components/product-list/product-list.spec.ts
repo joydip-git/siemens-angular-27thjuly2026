@@ -1,23 +1,54 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideProductService } from "../../../config/app-providers";
 import { ProductList } from './product-list';
+import { ProductService } from '../../services/product.service';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { ServiceContract } from '../../services/service-contract';
+import { PRODUCT_SERVICE_TOKEN } from '../../../config/constants';
 
-describe('ProductList', () => {
-  let component: ProductList;
-  let fixture: ComponentFixture<ProductList>;
+describe(
+  'ProductList tests',
+  () => {
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductList]
-    })
-    .compileComponents();
+    let fixture: ComponentFixture<ProductList>;
 
-    fixture = TestBed.createComponent(ProductList);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+    beforeEach(
+      async () => {
+        await TestBed.configureTestingModule({
+          //providers: [ProductService]
+          imports:[ProductList],
+          providers: [
+            provideProductService()
+          ]
+        }).compileComponents()
+        
+        fixture = TestBed.createComponent(ProductList)
+      }
+    )
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    it("during component creation the title signal has received default value: List of Products",
+      () => {
+        let productList: ProductList = fixture.componentInstance
+        expect(productList.title()).toEqual('List of Products')
+      }
+    )
+
+    it("product list displaying: List of Products in H2 element",
+      async () => {
+        await fixture.whenStable()
+
+        const h2: HTMLElement = fixture.debugElement.nativeElement.querySelector('h2')
+        expect(h2.textContent).toBe('List of Products')
+      }
+    )
+    it("table's tbody element has 5 rows (tr)",
+      async () => {
+        await fixture.whenStable()
+
+        const trElements: DebugElement[] = fixture.debugElement.queryAll(By.css('tbody tr'))
+        expect(trElements.length).toBe(5)
+      }
+    )
+  }
+);

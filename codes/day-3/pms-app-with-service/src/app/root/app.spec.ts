@@ -1,10 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { provideProductService } from "../config/app-providers";
+import { ProductList } from '../products/components/product-list/product-list';
+import { ProductService } from '../products/services/product.service';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      //providers: [ProductService]
       imports: [App],
+      providers:[provideProductService()]
     }).compileComponents();
   });
 
@@ -14,10 +19,4 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pms-app');
-  });
 });

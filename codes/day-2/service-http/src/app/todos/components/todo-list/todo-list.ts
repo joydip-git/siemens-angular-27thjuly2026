@@ -1,4 +1,4 @@
-import { Component, Inject, signal } from '@angular/core';
+import { Component, inject, Inject, signal } from '@angular/core';
 import { Todo } from '../../../models/todo';
 import { ServiceContract } from '../../services/todo.service';
 import { TODO_SERVICE_TOKEN } from '../../../config/constants';
@@ -13,12 +13,13 @@ export class TodoList {
   todos = signal<Todo[]>([])
   errorMessage = signal('')
   isLoadingOver = signal(false)
-  private svc: ServiceContract;
+  private svc: ServiceContract = inject<ServiceContract>(TODO_SERVICE_TOKEN);
 
   constructor(
-    @Inject(TODO_SERVICE_TOKEN) svc: ServiceContract,
-    @Inject('STR_TOKEN') value: string) {
-    this.svc = svc
+    //@Inject(TODO_SERVICE_TOKEN) svc: ServiceContract,
+    //@Inject('STR_TOKEN') value: string
+  ) {
+    //this.svc = svc
 
     this.svc
       .getTodos()
@@ -34,6 +35,6 @@ export class TodoList {
           this.isLoadingOver.set(true)
         }
       })
-    console.log(value);
+    //console.log(value);
   }
 }

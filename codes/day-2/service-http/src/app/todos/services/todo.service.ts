@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { todorecords } from "../../data/todorecords";
 import { Todo } from "../../models/todo";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { TODO_API_URL } from "../../config/constants";
 import { Observable } from "rxjs";
 
@@ -9,12 +9,12 @@ export interface ServiceContract {
     getTodos(): Observable<Todo[]>;
 }
 
-@Injectable()
+// @Injectable()
 export class TodoService implements ServiceContract {
-    private http: HttpClient;
-    constructor(http: HttpClient) {
-        this.http = http
-    }
+    private http: HttpClient = inject(HttpClient);
+    // constructor(http: HttpClient) {
+    //     this.http = http
+    // }
     getTodos(): Observable<Todo[]> {
         //return [...todorecords]
        return this.http.get<Todo[]>(TODO_API_URL)
