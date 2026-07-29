@@ -1,0 +1,157 @@
+Services and Dependency Injection:
+----------------------------------------
+
+service:
+	a class with reusable business, data acess logic etc.
+
+1. create services:
+
+export class SomeService{
+	getData(){
+		return ....
+	}
+}
+
+2. register the services
+------------------------
+Angular provides DI framework, even for services
+
+a. create a provider for the service
+---------------------------------------
+Angular needs a provider for that service to be registered first
+
+a provider is a type whose instance needs to be created
+the provider needs two pieces of information about the service
+	- token (supply it through "provide" property of the provider object)
+	- service class metadata (supply it through "useClass" property of the provider object)
+
+different types of providers:
+	ClassProvider		: provide and useClass
+	ValuePropvider		: provide and useValue
+	ExistingProvider	: provide and useExisting
+	FactoryProvider		: provide and useFactory
+
+useClass: supply service class whose instance needs to be DIed
+{ provide: Service/string token/token object, useClass: service}
+
+useValue: any type of value to be DIed
+{ provide: string token/token object, useValue: any-value}
+
+useExisting: any existing instance of a class or any other value to be DIed
+{ provide: Service/string token/token object, useExisting: reference of an service class object}
+
+useFactory: a function which is used to instantiate a class manually with its own DIs
+{ provide: Service/string token/token object, useFactory: ()=>{} }
+
+
+all of them has base type -> Provider
+
+b. register the provider with "providers" property
+------------------------------------------------------------
+
+the service provider object can be registered with "providers" property at
+	- component level
+		@Component({ providers:[]})
+
+	- at root level (in app-config.ts)
+		export const appConfig:AppConfig = {
+			providers:[]
+		}
+
+3. consume the service:
+---------------------------
+a service can be consumed by another service or component etc.
+a. through constructor
+
+class SomeComponent{
+	private svcRef:Service;
+	constructor(svc:Service){ this.svcRef = svc;}
+}
+
+b. using inject() method: can be used to directly inject an instance of a registered service during field initialization or in a method including constructor
+
+i. considering service has been registered in this manner: 
+	providers:[Service] -> providers:[{ provide:Service, useClass: Service}]
+class SomeComponent{
+
+	//field initialization 
+	private svcRef:Service = inject(Service);
+
+	constructor(){ 
+		
+	}
+}
+
+or 
+
+class SomeComponent{
+	private svcRef:Service;
+
+	//in constructor
+	constructor(){ 
+		this.svcRef =  = inject(Service);
+	}
+}
+
+ii. considering service has been registered in this manner: 
+	const token = new InjectionToken<Service>('str_token');
+	providers:[{ provide:token, useClass: Service}]
+
+class SomeComponent{
+
+	//field initialization 
+	private svcRef:Service = inject<Service>(token);
+
+	constructor(){ 
+		
+	}
+}
+
+or 
+
+class SomeComponent{
+	private svcRef:Service;
+
+	//in constructor
+	constructor(){ 
+		this.svcRef =  = inject<Service>(token);
+	}
+}
+
+
+
+
+example: registration and consumption of service:
+export class TodoService{}
+
+const todoSvcProvider:Provider ={
+	provide: TodoService/'TODO_SVC_TOKEN',
+	useClass: TodoService
+	//useValue: new TodoService()
+	//useExisting: TodoService
+	//useFactory: ()=> new TodoService()
+}
+
+
+export const appConfig:AppConfig = {
+			providers:[TodoService]
+			or 
+			providers: [todoSvcProvider]
+		}
+
+@Component({providers:[TodoService]})->[provide: TodoService, useClass: TodoService]
+export class TodoList{
+	private svc:TodoSevice;
+	constructor(svcRef:TodoService){
+		this.svc = svcRef
+	}
+}
+
+or
+@Component({ providers:[todoSvcProvider]})
+export class TodoList{
+	private svc:TodoSevice;
+	constructor(@Inject('TODO_SVC_TOKEN') svcRef:TodoService){
+		this.svc = svcRef
+	}
+}
