@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class ProductList implements OnInit, OnDestroy {
   private svc: ServiceContract;
   private fetchSubscription?: Subscription;
+  private deleteSubscription?: Subscription;
 
   title = signal('List of Products')
   products = signal<Product[]>([]);
@@ -32,8 +33,47 @@ export class ProductList implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.fetchSubscription?.unsubscribe()
+    this.deleteSubscription?.unsubscribe()
   }
 
+  deleteProductRecord(id: number) {
+
+    if (window.confirm('delete record?')) {
+      this.resetStatesBeforeRequest()
+
+      this.deleteSubscription = this.svc
+        .deleteProduct(id)
+        .subscribe({
+          next: (apiResponse) => {
+            if (apiResponse.data !== null) {
+              window.alert('product deleted')
+            } else {
+              this.setStateOnfail(apiResponse.message)
+            }
+          },
+          error: (err) => {
+            this.setStateOnfail(err.message)
+          },
+          complete: () => {
+            this.fetchRecrds()
+          }
+        })
+    }
+  }
+
+  private resetStatesBeforeRequest() {
+    this.isRequestOver.set(false)
+  }
+  private setStateOnfail(message: string) {
+    this.products.set([])
+    this.errorInfo.set(message)
+    this.isRequestOver.set(true)
+  }
+  private setStateOnSuccess(data: Product[]) {
+    this.products.set(data)
+    this.errorInfo.set('')
+    this.isRequestOver.set(true)
+  }
   private fetchRecrds() {
     this.fetchSubscription = this
       .svc
@@ -41,19 +81,13 @@ export class ProductList implements OnInit, OnDestroy {
       .subscribe({
         next: (apiResponse) => {
           if (apiResponse.data !== null) {
-            this.products.set(apiResponse.data)
-            this.errorInfo.set('')
-            this.isRequestOver.set(true)
+            this.setStateOnSuccess(apiResponse.data)
           } else {
-            this.products.set([])
-            this.errorInfo.set(apiResponse.message)
-            this.isRequestOver.set(true)
+            this.setStateOnfail(apiResponse.message)
           }
         },
         error: (err) => {
-          this.products.set([])
-          this.errorInfo.set(err.message)
-          this.isRequestOver.set(true)
+          this.setStateOnfail(err.message)
         }
       })
   }
