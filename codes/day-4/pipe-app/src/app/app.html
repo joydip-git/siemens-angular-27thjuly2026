@@ -1,0 +1,37 @@
+<h2>{{title()}}</h2>
+
+<!-- separate component -->
+<br>
+<div>
+  <label for="txtFilter">Filter By Name: &nbsp;</label>
+  <input type="text" id="txtFilter" [value]="filterValue()" (input)="filterValue.set($event.target.value)">
+</div>
+<br>
+<span>Filtering By: &nbsp; {{filterValue()}}</span>
+<br>
+
+
+<!-- separate component -->
+<h2>
+  List of People
+</h2>
+
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (person of (people|personFilter:filterValue()); track $index) {
+    <tr>
+      <td>{{person.id}}</td>
+      <td>{{person.name|uppercase}}</td>
+      <td>{{person.salary|currency:'INR'}}</td>
+    </tr>
+    }
+  </tbody>
+</table>

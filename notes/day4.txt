@@ -20,7 +20,13 @@ changes			OnChanges		ngOnChanges
 init			OnInit			ngOnInit
 destroy			OnDestroy		ngOnDestroy
 
+import {Pipe,PipeTransform} from '@angular/core'
 
-
+@Pipe({name:'uppercase'})
+export class UpperCasePipe implements PipeTransform{
+	transform(data:string, ...args?:any[]):string{
+		return data.toLocaleUpperCase()
+	}
+}
 
 	
