@@ -1,16 +1,30 @@
-//the service class must implement an interface
-
-import { productRecords } from "../data/productrecords";
+import { inject } from "@angular/core";
 import { ServiceContract } from "./service-contract";
-
-//create a constant variable of type InjectionToken
-//create a function which returns a Provider type object where the previously created InjectionToken instance instance will be assigned to provide property
-//the name of the class should be passed to useClass property
-
-//the service provider for this service should be registered at the root level (app.config.ts) by calling the function created in the previous step
-
+import { HttpClient } from "@angular/common/http";
+import { PRODUCT_API_URL } from "../../config/constants";
+import { ApiResponse } from "../models/apiresponse";
+import { Product } from "../models/product";
+import { Observable } from "rxjs";
 export class ProductService implements ServiceContract {
-    getProducts() {
-        return [...productRecords];
+    private http = inject(HttpClient)
+
+    addProduct(p: Product): Observable<ApiResponse<Product[]>> {
+        return this.http.post<ApiResponse<Product[]>>(PRODUCT_API_URL, p)
+    }
+
+    deleteProduct(id: number): Observable<ApiResponse<Product[]>> {
+        return this.http.delete<ApiResponse<Product[]>>(`${PRODUCT_API_URL}/${id}`)
+    }
+
+    getProduct(id: number): Observable<ApiResponse<Product>> {
+        return this.http.get<ApiResponse<Product>>(`${PRODUCT_API_URL}/${id}`)
+    }
+
+    getProducts(): Observable<ApiResponse<Product[]>> {
+        return this.http.get<ApiResponse<Product[]>>(PRODUCT_API_URL)
+    }
+
+    updateProduct(id: number, p: Product): Observable<ApiResponse<Product[]>> {
+        return this.http.put<ApiResponse<Product[]>>(`${PRODUCT_API_URL}/${id}`, p)
     }
 }

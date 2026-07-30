@@ -11,8 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideProductService(),
-    provideHttpClient()
-    //register the provider for ProductService by calling the method as instructed in the productservice file
-    //ProductService
+    provideHttpClient()    
   ]
 };

@@ -1,0 +1,22 @@
+component life cycle and its events:
+------------------------------------
+1. mounting: first time component is rendered in the UI
+	a. constructor call and field initialization takes place
+	b. an event gets fired: "changes" (this event is fired after constructor and when a nested component receives data from its parent component. you can attach an event handler to this event to write some side effect causing that should be executed whenever nested component receives data from its parent component)
+	c. next "init" event gets fired (so that you can attach an event handler where you can write some side effect causing code)
+
+2. update:
+	changes => might take place
+
+3. destruction/unmounting:
+	destroy => handle this event to clean up resources
+
+
+event name		interface name		method
+------------------------------------------------------------
+X			OnX			ngOnX
+
+changes			OnChanges		ngOnChanges
+init			OnInit			ngOnInit
+destroy			OnDestroy		ngOnDestroy
+	

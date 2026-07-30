@@ -1,6 +1,14 @@
 <h2>{{title()}}</h2>
 
-@if(products().length>0){
+@if(!isRequestOver()){
+<app-spinner></app-spinner>
+}
+@else if (errorInfo()!=='') {
+<span>{{errorInfo()}}</span>
+}@else if (products().length ===0) {
+<span>No records found</span>
+}
+@else{
 <table class="table table-hover">
     <thead>
         <tr>
@@ -8,6 +16,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Rating</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody class="table-primary">
@@ -19,11 +28,11 @@
             <td>{{p.productName}}</td>
             <td>{{p.price}}</td>
             <td>{{p.starRating}}</td>
+            <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
         </tr>
         }
     </tbody>
 </table>
-}
-@else{
-<span>No records</span>
 }
