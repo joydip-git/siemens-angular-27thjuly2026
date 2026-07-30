@@ -2,7 +2,6 @@ import { HttpTestingController, provideHttpClientTesting } from "@angular/common
 import { TestBed } from "@angular/core/testing"
 import { TodoService } from "./todo.service";
 import { Todo } from "../../models/todo";
-import { expect, describe, it } from "vitest";
 import { TODO_API_URL } from "../../config/constants";
 
 describe(
@@ -20,9 +19,9 @@ describe(
                         provideHttpClientTesting()
                     ]
                 })
-
-                httpMock = TestBed.inject(HttpTestingController)
+               
                 todoSvc = TestBed.inject(TodoService)
+                httpMock = TestBed.inject(HttpTestingController)
             }
         )
 
