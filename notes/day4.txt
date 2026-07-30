@@ -19,4 +19,8 @@ X			OnX			ngOnX
 changes			OnChanges		ngOnChanges
 init			OnInit			ngOnInit
 destroy			OnDestroy		ngOnDestroy
+
+
+
+
 	

@@ -1,0 +1,6 @@
+<h2>Parent component</h2>
+<br>
+Data in parent component: &nbsp;{{title()}}
+<br>
+<app-nested [titleData]="title()" (titleDataChanged)="editTitle($event)">
+</app-nested>
