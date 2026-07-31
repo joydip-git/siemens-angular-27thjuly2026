@@ -3,7 +3,7 @@ import { Product } from '../../models/product';
 import { ServiceContract } from '../../services/service-contract';
 import { PRODUCT_SERVICE_TOKEN } from '../../../config/constants';
 import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { ProductFilterPipe } from '../../pipes/product-filter-pipe';
 import { RouterLink } from "@angular/router";
 

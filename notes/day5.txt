@@ -57,6 +57,9 @@ a class with @Directive decorator
 this is used as an attribute on any element
 to extend behavior of any element
 
+products/view/:id -> products/view/1 -> {id:"1"}
+categories/:cid/products/view/:pid -> categories/1/products/view/1 -> {cid:"1", id:"1"}
+
 
 
 
