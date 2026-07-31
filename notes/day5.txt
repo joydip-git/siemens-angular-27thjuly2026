@@ -62,6 +62,20 @@ categories/:cid/products/view/:pid -> categories/1/products/view/1 -> {cid:"1", 
 
 
 
+https://forms.gle/Ra7XeP8mytkeqwAB7
+
+xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+
+
+ await pmsAppWebView.EnsureCoreWebView2Async(null);
+            pmsAppWebView.CoreWebView2.SetVirtualHostNameToFolderMapping(
+                "siemens.com",
+                $"{Environment.CurrentDirectory}\\pmsapp\\browser", CoreWebView2HostResourceAccessKind.DenyCors
+                );
+            pmsAppWebView.Source = new Uri("http://siemens.com/index.html");
+
+
+
 
 
 
