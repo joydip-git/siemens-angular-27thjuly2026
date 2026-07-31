@@ -1,0 +1,38 @@
+<h2>{{title()}}</h2>
+
+@if(!isRequestOver()){
+<app-spinner></app-spinner>
+}
+@else if (errorInfo()!=='') {
+<span>{{errorInfo()}}</span>
+}@else if (products().length ===0) {
+<span>No records found</span>
+}
+@else{
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="table-primary">
+        @for (p of products()|productFilter:filterText(); track $index) {
+        <tr>
+            <td [routerLink]="['/products/view',p.productId]">
+                <img class="img-style" [src]="p.imageUrl" alt="NA" [title]="p.productName">
+            </td>
+            <td>{{p.productName}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.starRating}}</td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="deleteProductRecord(p.productId)">Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}

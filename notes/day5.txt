@@ -1,0 +1,70 @@
+routing:
+-----------------------
+base url: http://localhost:4200/
+
+products         	-> ProductContainer
+products/view/id	-> ViewProduct
+products/edit?id=1	-> EditProduct
+products/add 		-> AddProduct
+
+home			-> Home
+/			-> /home [Home]
+
+**			-> PageNotFound
+
+
+http://localhost:8080/products.aspx
+
+package: @angular/router
+provider: provideRouter(array of routes) -> call this method in app.config.ts file
+Sets up providers necessary to enable Router functionality for the application. Allows to configure a set of routes as well as extra features that should be enabled.
+
+Router -> built-in service (engine)
+	- create routes (using Route type)
+	- create an array of those routes  (using Route[] type or use Routes type)
+	- register routes with Router 
+
+ActivatedRoute -> built-in service class
+	- maintains the information about current navigation
+
+RouterState -> built-in service class
+	- maintains current state of router
+
+RouterOutlet -> built-in component
+	- used to render a component dynamically in this outlet
+	- <router-outlet>...</...>
+	Acts as a placeholder that Angular dynamically fills based on the current router state.
+	Each outlet can have a unique name, determined by the optional name attribute. The name cannot be set or changed dynamically. 
+	If not set, default value is "primary"
+
+ActivatedRouteSnapshot -> built-in type
+	- represents current state of an ActivatedRoute
+
+routerLink -> built-in directive
+	- a string (url)
+	- or an array of strings (to form a url)
+@Directive({
+	selector:'[routerLink]'
+})
+export class RouterLink{
+	
+}
+
+
+
+directives in Angular:
+a class with @Directive decorator
+this is used as an attribute on any element
+to extend behavior of any element
+
+
+
+
+
+
+
+
+
+
+
+
