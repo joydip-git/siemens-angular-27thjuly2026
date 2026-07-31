@@ -1,54 +1,110 @@
-<form>
+<!-- <form [formGroup]="addForm" (submit)="submit()">
     <div>
         <label class="form-label mt-4" for="txtId">
             Id: &nbsp;
         </label>
-        <input class="form-control" id="txtId" type="text" />
+        <input class="form-control" id="txtId" type="text" formControlName="productId"/>
     </div>
     <div>
         <label class="form-label mt-4" for="txtName">
             Name:&nbsp;
         </label>
-        <input type="text" id="txtName" class="form-control" />
+        <input type="text" id="txtName" class="form-control" formControlName="productName"/>
     </div>
     <div>
         <label class="form-label mt-4" for="txtDesc">
             Desc:&nbsp;
         </label>
-        <textarea id="txtDesc" class="form-control">
+        <textarea id="txtDesc" class="form-control" formControlName="description">
         </textarea>
     </div>
 
     <div>
         <label class="form-label mt-4" for="txtCode">Code:&nbsp;</label>
-        <input class="form-control" type="text" id="txtCode" />
+        <input class="form-control" type="text" id="txtCode" formControlName="productCode"/>
     </div>
     <div>
         <label class="form-label mt-4" for="txtReleaseDate">
             Released On:&nbsp;
         </label>
-        <input class="form-control" type="date" id="txtReleaseDate" />
+        <input class="form-control" type="date" id="txtReleaseDate" formControlName="releaseDate"/>
     </div>
     <div>
         <label class="form-label mt-4" for="txtPrice">
             Price:&nbsp;
         </label>
-        <input class="form-control" type="text" id="txtPrice" />
+        <input class="form-control" type="text" id="txtPrice" formControlName="price"/>
     </div>
     <div>
         <label class="form-label mt-4" for="txtRating">
             Rating:&nbsp;
         </label>
-        <input class="form-control" type="text" id="txtRating" />
+        <input class="form-control" type="text" id="txtRating" formControlName="starRating"/>
     </div>
     <div>
         <label class="form-label mt-4" for="txtImageUrl">
             Image URL: &nbsp;
         </label>
-        <input class="form-control" type="text" id="txtImageUrl" />
+        <input class="form-control" type="text" id="txtImageUrl" formControlName="imageUrl"/>
     </div>
     <div class="button-center">
-        <button type="button" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary">
+            Add
+        </button>
+    </div>
+</form> -->
+
+<form ngForm (submit)="submit(frm)" #frm="ngForm">
+    <div>
+        <label class="form-label mt-4" for="txtId">
+            Id: &nbsp;
+        </label>
+        <input class="form-control" id="txtId" type="text" name="productId" ngModel />
+    </div>
+    <div>
+        <label class="form-label mt-4" for="txtName">
+            Name:&nbsp;
+        </label>
+        <input type="text" id="txtName" class="form-control" name="productName" ngModel />
+    </div>
+    <div>
+        <label class="form-label mt-4" for="txtDesc">
+            Desc:&nbsp;
+        </label>
+        <textarea id="txtDesc" class="form-control" name="description" ngModel>
+        </textarea>
+    </div>
+
+    <div>
+        <label class="form-label mt-4" for="txtCode">Code:&nbsp;</label>
+        <input class="form-control" type="text" id="txtCode" name="productCode" ngModel />
+    </div>
+    <div>
+        <label class="form-label mt-4" for="txtReleaseDate">
+            Released On:&nbsp;
+        </label>
+        <input class="form-control" type="date" id="txtReleaseDate" name="releaseDate" ngModel />
+    </div>
+    <div>
+        <label class="form-label mt-4" for="txtPrice">
+            Price:&nbsp;
+        </label>
+        <input class="form-control" type="text" id="txtPrice" name="price" ngModel />
+    </div>
+    <div>
+        <label class="form-label mt-4" for="txtRating">
+            Rating:&nbsp;
+        </label>
+        <input class="form-control" type="text" id="txtRating" name="starRating" ngModel />
+    </div>
+    <div>
+        <label class="form-label mt-4" for="txtImageUrl">
+            Image URL: &nbsp;
+        </label>
+        <input class="form-control" type="text" id="txtImageUrl" name="imageUrl" ngModel />
+    </div>
+    <div class="button-center">
+        <button type="submit" class="btn btn-primary">
             Add
         </button>
     </div>

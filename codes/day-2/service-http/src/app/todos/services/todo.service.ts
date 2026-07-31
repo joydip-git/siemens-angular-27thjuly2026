@@ -1,5 +1,4 @@
 import { HttpClient } from "@angular/common/http";
-import { todorecords } from "../../data/todorecords";
 import { Todo } from "../../models/todo";
 import { inject, Injectable } from "@angular/core";
 import { TODO_API_URL } from "../../config/constants";
